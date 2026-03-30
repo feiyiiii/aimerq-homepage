@@ -2,6 +2,19 @@
 
 All notable changes to this project will be documented in this file.
 
+## [2.3.0] - 2026-03-30
+
+### 🐛 Bug Fixes
+- fix: correct syntax error in root CSS variable declaration
+- fix: correct font MIME types to woff2 and fix syntax error in global CSS root selector
+
+### 📝 Other Changes
+- chore: upgrade astro and associated dependencies to latest versions
+- refactor: migrate hardcoded Tailwind colors to CSS variables for theme support across components and pages
+- refactor: migrate UI components to CSS variables and implement theme persistence in local storage
+- refactor: migrate hardcoded styles to CSS variables and implement theme persistence in localStorage
+
+
 ## [2.2.2] - 2026-01-29
 
 ### 📝 Other Changes
