@@ -23,18 +23,15 @@ import { FOOTER } from "../consts";
 					style={{ backgroundColor: "var(--theme-primary)" }}
 				>
 				</div>
-				<!-- <span style={{ color: "var(--theme-primary)" }}
-                    >{footer.statusMessage}</span
-                > -->
+				<span style={{ color: "var(--theme-primary)" }}
+					>{FOOTER.statusMessage}</span
+				>
 				<span>•</span>
 				{
-					(
-						// footer.madeWithLove.enabled && (
+					FOOTER.madeWithLove.enabled && (
 						<span>
-							Made With Love on{" "}
-							{/* {footer.madeWithLove.location} */}
+							{FOOTER.madeWithLove.text} on {FOOTER.madeWithLove.location}
 						</span>
-						// )
 					)
 				}
 			</div>
@@ -67,7 +64,6 @@ import { FOOTER } from "../consts";
 			)
 		}
 
-		<!-- {/* Right side - Status (desktop only) */} -->
 		{
 			FOOTER.systemStatus.enabled && (
 				<div

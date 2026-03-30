@@ -107,8 +107,8 @@ const timeString = date.toLocaleTimeString();
 										{link.name === "tg"
 											? "@"
 											: link.name === "gh"
-												? "git://"
-												: "./"}
+											? "git://"
+											: "./"}
 									</span>
 									{link.name}
 								</a>
@@ -150,23 +150,32 @@ const timeString = date.toLocaleTimeString();
 <script>
 	import { getThemeDisplayNames } from "../utils/theme";
 
-	// theme toggle
+	// theme toggle with localStorage persistence
 	const themeDisplayNames = getThemeDisplayNames();
 	const themes = Object.keys(themeDisplayNames);
-	console.log("Available themes:", themes);
 
 	const themeToggle = document.getElementById("themeToggle");
-	let current = 0;
 
-	console.log("Current theme:", themes[current]);
+	// Restore saved theme from localStorage
+	const savedTheme = localStorage.getItem("selected-theme");
+	let current = savedTheme ? themes.indexOf(savedTheme) : 0;
+	if (current === -1) current = 0;
+
+	// Apply saved theme on load
+	if (savedTheme && themes.includes(savedTheme)) {
+		document.documentElement.setAttribute("data-theme", savedTheme);
+		if (themeToggle) {
+			themeToggle.textContent = `🎨 ${themeDisplayNames[savedTheme]}`;
+		}
+	}
+
 	if (themeToggle) {
 		themeToggle.addEventListener("click", () => {
 			current = (current + 1) % themes.length;
-			document.documentElement.setAttribute(
-				"data-theme",
-				themes[current],
-			);
-			themeToggle.textContent = `🎨 ${themeDisplayNames[themes[current]]}`;
+			const newTheme = themes[current];
+			document.documentElement.setAttribute("data-theme", newTheme);
+			localStorage.setItem("selected-theme", newTheme);
+			themeToggle.textContent = `🎨 ${themeDisplayNames[newTheme]}`;
 		});
 	}
 </script>
