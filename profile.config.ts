@@ -274,8 +274,8 @@ export const profileConfig: ProfileConfig = {
           "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━",
           "",
           "Email: your.email@example.com",
-          "LinkedIn: linkedin.com/in/yourusername",
-          "GitHub: github.com/yourusername",
+          "LinkedIn: linkedin.com/in/iamdhakrey",
+          "GitHub: github.com/iamdhakrey",
           "",
           "💼 Available for:",
           "• Full-time opportunities",
@@ -292,9 +292,9 @@ export const profileConfig: ProfileConfig = {
           "☕ Thanks for considering!",
           "",
           "If you like my work, you can support me:",
-          "• GitHub Sponsors: github.com/sponsors/yourusername",
-          "• Ko-fi: ko-fi.com/yourusername",
-          "• PayPal: paypal.me/yourusername",
+          "• GitHub Sponsors: github.com/sponsors/iamdhakrey",
+          "• Ko-fi: ko-fi.com/iamdhakrey",
+          "• PayPal: paypal.me/iamdhakrey",
           "",
           "Every coffee helps me code better! ☕💻"
         ]
@@ -359,10 +359,10 @@ export const profileConfig: ProfileConfig = {
   },
 
   seo: {
-    siteName: "YourName - Developer Portfolio",
-    keywords: ["developer", "portfolio", "react", "typescript", "javascript"],
-    author: "Your Name",
-    twitterHandle: "@yourusername",
+    siteName: "Hrithik Dhakrey - Developer Portfolio",
+    keywords: ["developer", "portfolio", "rust", "typescript", "go", "full-stack", "open-source"],
+    author: "Hrithik Dhakrey",
+    twitterHandle: "@iamdhakrey",
     ogImage: "/og-image.jpg"
   },
 
