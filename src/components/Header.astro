@@ -58,28 +58,16 @@ const timeString = date.toLocaleTimeString();
 				}, 1000);
 			</script>
 
-			{/* Right side - Navigation commands & Theme selector */}
+			{/* Right side - Navigation commands */}
 			<div
 				class="flex items-center space-x-2 sm:space-x-4 text-xs sm:text-sm"
 			>
-				{/* Theme toggle button */}
-				<!-- <button
-                    class="px-2 py-1 rounded text-xs font-mono hover:opacity-75 transition-opacity"
-                    style={{
-                        backgroundColor: "var(--theme-accent)",
-                        color: "var(--theme-background)",
-                    }}
-                    title={`Current: ${themeDisplayNames[currentTheme]} (click to toggle)`}
-                >
-                    🎨 {currentTheme}
-                </button> -->
-				<button
-					id="themeToggle"
-					class="px-2 py-1 rounded text-xs font-mono hover:opacity-75 transition-opacity"
+				<span
+					class="px-2 py-1 rounded text-xs font-mono"
 					style="background-color: var(--theme-accent); color: var(--theme-background);"
 				>
-					🎨 Cyberpunk
-				</button>
+					light
+				</span>
 
 				{
 					NAVIGATION.links.map((link, index) => (
@@ -146,42 +134,3 @@ const timeString = date.toLocaleTimeString();
 		}
 	</div>
 </nav>
-
-<script>
-	import { getThemeDisplayNames } from "../utils/theme";
-
-	// theme toggle with localStorage persistence
-	const themeDisplayNames = getThemeDisplayNames();
-	const themes = Object.keys(themeDisplayNames);
-
-	const themeToggle = document.getElementById("themeToggle");
-
-	// Restore saved theme from localStorage
-	const defaultTheme = "cyberpunk";
-	const savedTheme = localStorage.getItem("selected-theme");
-	let current = savedTheme ? themes.indexOf(savedTheme) : themes.indexOf(defaultTheme);
-	if (current === -1) current = 0;
-
-	// Apply saved theme on load
-	if (savedTheme && themes.includes(savedTheme)) {
-		document.documentElement.setAttribute("data-theme", savedTheme);
-		if (themeToggle) {
-			themeToggle.textContent = `🎨 ${themeDisplayNames[savedTheme]}`;
-		}
-	} else {
-		document.documentElement.setAttribute("data-theme", defaultTheme);
-		if (themeToggle) {
-			themeToggle.textContent = `🎨 ${themeDisplayNames[defaultTheme]}`;
-		}
-	}
-
-	if (themeToggle) {
-		themeToggle.addEventListener("click", () => {
-			current = (current + 1) % themes.length;
-			const newTheme = themes[current];
-			document.documentElement.setAttribute("data-theme", newTheme);
-			localStorage.setItem("selected-theme", newTheme);
-			themeToggle.textContent = `🎨 ${themeDisplayNames[newTheme]}`;
-		});
-	}
-</script>

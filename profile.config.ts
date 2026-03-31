@@ -216,7 +216,7 @@ export const profileConfig: ProfileConfig = {
   terminal: {
     hostname: "aimerq.local",
     username: "aimerq",
-    theme: "cyberpunk",
+    theme: "light",
     welcomeMessage: [
       "",
       "╭─────────────────────────────────────────────────────────────────────────────╮",
