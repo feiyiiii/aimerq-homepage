@@ -118,6 +118,37 @@ html[data-theme="light"] .rounded {
 		0 1px 0 rgba(255, 255, 255, 0.8) inset;
 }
 
+.cat-playground {
+	position: relative;
+	width: 220px;
+	height: 34px;
+	margin: 0 auto 0.75rem;
+	overflow: hidden;
+}
+
+.cat-bounce {
+	position: absolute;
+	left: 12px;
+	top: 2px;
+	font-size: 20px;
+	line-height: 1;
+	color: var(--theme-primary);
+	animation: cat-chase 4s ease-in-out infinite;
+	white-space: nowrap;
+}
+
+.cat-toy {
+	position: absolute;
+	top: 12px;
+	right: 18px;
+	width: 8px;
+	height: 8px;
+	border-radius: 999px;
+	background: var(--theme-accent);
+	box-shadow: 0 0 10px color-mix(in srgb, var(--theme-accent) 55%, transparent);
+	animation: toy-wiggle 4s ease-in-out infinite;
+}
+
 .futuristic-panel {
 	position: relative;
 	overflow: hidden;
@@ -201,6 +232,33 @@ html[data-theme="light"] .rounded {
 .f-metric-value {
 	font-size: 1rem;
 	color: var(--theme-text);
+}
+
+@keyframes cat-chase {
+	0%, 100% {
+		transform: translateX(0) translateY(0);
+	}
+	35% {
+		transform: translateX(118px) translateY(-1px);
+	}
+	45% {
+		transform: translateX(132px) translateY(-6px);
+	}
+	60% {
+		transform: translateX(146px) translateY(0);
+	}
+}
+
+@keyframes toy-wiggle {
+	0%, 100% {
+		transform: translateX(0) scale(1);
+	}
+	40% {
+		transform: translateX(-10px) scale(1.08);
+	}
+	55% {
+		transform: translateX(-6px) scale(0.96);
+	}
 }
 
 

@@ -62,12 +62,13 @@ const timeString = date.toLocaleTimeString();
 			<div
 				class="flex items-center space-x-2 sm:space-x-4 text-xs sm:text-sm"
 			>
-				<span
+				<button
+					id="themeToggle"
 					class="px-2 py-1 rounded text-xs font-mono"
 					style="background-color: var(--theme-accent); color: var(--theme-background);"
 				>
 					light
-				</span>
+				</button>
 
 				{
 					NAVIGATION.links.map((link, index) => (
@@ -134,3 +135,26 @@ const timeString = date.toLocaleTimeString();
 		}
 	</div>
 </nav>
+
+<script>
+	import { getThemeDisplayNames } from "../utils/theme";
+
+	const themeDisplayNames = getThemeDisplayNames();
+	const themes = Object.keys(themeDisplayNames);
+	const themeToggle = document.getElementById("themeToggle");
+
+	const savedTheme = localStorage.getItem("selected-theme");
+	let currentTheme = savedTheme && themes.includes(savedTheme) ? savedTheme : "light";
+	document.documentElement.setAttribute("data-theme", currentTheme);
+
+	if (themeToggle) {
+		themeToggle.textContent = currentTheme;
+		themeToggle.addEventListener("click", () => {
+			const currentIndex = themes.indexOf(currentTheme);
+			currentTheme = themes[(currentIndex + 1) % themes.length];
+			document.documentElement.setAttribute("data-theme", currentTheme);
+			localStorage.setItem("selected-theme", currentTheme);
+			themeToggle.textContent = currentTheme;
+		});
+	}
+</script>
