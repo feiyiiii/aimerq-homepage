@@ -1,13 +1,14 @@
 ---
 import BaseHead from "../components/BaseHead.astro";
+import CommandOutput from "../components/CommandOutput.astro";
 import Footer from "../components/Footer.astro";
 import Header from "../components/Header.astro";
-import { SITE_DESCRIPTION, SITE_TITLE } from "../consts";
+import { SITE_DESCRIPTION, SITE_TITLE, terminalConfig } from "../consts";
 import profileConfig from "../../profile.config";
 ---
 
 <!doctype html>
-<html lang="zh-CN" data-theme="light">
+<html lang="zh-CN" data-theme="cyberpunk">
 	<head>
 		<BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
 	</head>
@@ -20,211 +21,260 @@ import profileConfig from "../../profile.config";
 			}}
 		>
 			<Header />
+			<div id="command-output" class="flex-grow" style="display: none;">
+				<CommandOutput
+					output={[
+						{
+							type: "command",
+							text: [
+								"$ help",
+								"Available commands:",
+								" - help: Show this help message",
+								" - neofetch: Display system information",
+								" - skills: List my skills",
+								" - joke: Tell a joke",
+								" - clear: Clear the terminal",
+							],
+						},
+					]}
+				/>
+			</div>
 			<main>
 				<div
-					class="pt-0 font-mono space-y-6 overflow-y-auto h-[calc(100vh-160px)] max-w-screen-xl mx-auto px-3 py-4 sm:px-6 sm:py-8"
+					class="pt-0 font-mono space-y-1 overflow-y-auto h-[calc(100vh-160px)] max-w-screen-xl mx-auto p-2 sm:p-4"
 					style={{
 						backgroundColor: "var(--theme-background)",
 						color: "var(--theme-text)",
 						fontFamily: "var(--theme-fontFamily)",
 					}}
 				>
-					<section
-						class="rounded-3xl p-6 sm:p-10 futuristic-panel"
-						style={{
-							border: `1px solid var(--theme-welcomeBoxBorder)`,
-							backgroundColor: "var(--theme-welcomeBoxBg)",
-						}}
+					<div
+						class="flex items-center pt-2 text-sm sm:text-base"
+						style={{ color: "var(--theme-commandText)" }}
 					>
-						<div class="grid gap-8 lg:grid-cols-[1.5fr_0.9fr] lg:items-end">
-							<div>
-								<div class="flex flex-wrap gap-2 mb-5">
-									<span class="f-chip">Human Resources</span>
-									<span class="f-chip">Business Partnering</span>
-									<span class="f-chip">Organization Growth</span>
-								</div>
-								<div
-									class="text-xs sm:text-sm mb-3 tracking-[0.25em] uppercase"
-									style={{ color: "var(--theme-secondary)" }}
-								>
-									AimerQ / Personal Interface
-								</div>
-								<h1
-									class="text-3xl sm:text-5xl leading-tight font-semibold tracking-tight mb-5"
-									style={{ color: "var(--theme-text)" }}
-								>
-									懂技术，也懂业务。
-									<br />
-									把组织问题看清，也把人的感受放进去。
-								</h1>
-								<p
-									class="text-base sm:text-lg leading-8 max-w-3xl mb-4"
-									style={{ color: "var(--theme-outputText)" }}
-								>
-									我是 {profileConfig.profile.name}。对我来说，HR 是一种精密而温和的系统设计:
-									理解业务，也理解人如何在变化里继续稳定地工作与协同。
-								</p>
-								<p
-									class="text-sm sm:text-base leading-8 max-w-3xl"
-									style={{ color: "var(--theme-muted)" }}
-								>
-									这里关于业务、人才、组织，也关于我希望始终保留下来的清醒、分寸和温度。
-								</p>
-							</div>
+						<span
+							class="hidden sm:inline"
+							style={{ color: "var(--theme-promptUser)" }}
+							>user@{terminalConfig.hostname}</span
+						>
+						<span
+							class="hidden sm:inline"
+							style={{ color: "var(--theme-text)" }}>:</span
+						>
+						<span
+							class="hidden sm:inline"
+							style={{ color: "var(--theme-promptPath)" }}>~</span
+						>
+						<span style={{ color: "var(--theme-promptSymbol)" }}
+							>$
+						</span>
+						<input
+							type="text"
+							class="bg-transparent border-none outline-none flex-1 font-mono text-sm sm:text-base"
+							style={{ color: "var(--theme-text)" }}
+						/>
+					</div>
 
-							<div class="futuristic-panel rounded-3xl p-5 sm:p-6">
-								<div
-									class="text-xs uppercase tracking-[0.25em] mb-4"
-									style={{ color: "var(--theme-secondary)" }}
-								>
-									Current Focus
-								</div>
-								<div class="space-y-3">
-									<div class="f-metric">
-										<span class="f-metric-label">Role</span>
-										<span class="f-metric-value">HRBP / OD</span>
-									</div>
-									<div class="f-metric">
-										<span class="f-metric-label">Location</span>
-										<span class="f-metric-value">Beijing</span>
-									</div>
-									<div class="f-metric">
-										<span class="f-metric-label">Keywords</span>
-										<span class="f-metric-value">People, Business, Time</span>
-									</div>
-									<div class="f-metric">
-										<span class="f-metric-label">Contact</span>
-										<span class="f-metric-value">qinfeiyii@gmail.com</span>
-									</div>
-								</div>
-							</div>
-						</div>
-					</section>
-
-					<section class="grid grid-cols-1 lg:grid-cols-[1.1fr_0.9fr] gap-5">
+					<div
+						id="welcome-box"
+						class="mb-4 sm:mb-6"
+						style={{ color: "var(--theme-primary)" }}
+					>
 						<div
-							class="rounded-3xl p-6 sm:p-8 futuristic-panel"
+							class="rounded-lg p-4 sm:p-6 shadow-lg"
 							style={{
+								border: `2px solid var(--theme-welcomeBoxBorder)`,
 								backgroundColor: "var(--theme-welcomeBoxBg)",
-								border: `1px solid var(--theme-border)`,
 							}}
 						>
-							<div
-								class="text-xs sm:text-sm mb-4 tracking-[0.25em] uppercase"
-								style={{ color: "var(--theme-secondary)" }}
-							>
-								About
+							<div class="text-center mb-4">
+								<div class="text-2xl sm:text-3xl mb-2">
+									╭────────────────────────────╮
+								</div>
+								<div
+									class="text-l sm:text-xl font-bold mb-1"
+									style={{ color: "var(--theme-primary)" }}
+								>
+									AimerQ Narrative Terminal
+								</div>
+								<div class="text-2xl sm:text-3xl mb-3">
+									╰────────────────────────────╯
+								</div>
 							</div>
-							<h2
-								class="text-2xl sm:text-3xl leading-tight font-semibold mb-4"
-								style={{ color: "var(--theme-text)" }}
-							>
-								我想做的，不只是把流程跑通。
-							</h2>
-							<div class="space-y-4 text-sm sm:text-base leading-8" style={{ color: "var(--theme-outputText)" }}>
-								<p>
-									我关心招聘是否贴近真实业务，也关心组织有没有为人留下成长空间。
-								</p>
-								<p>
-									我喜欢把复杂问题拆开来看，也喜欢在理性的系统里，为人保留一点理解与余地。对我来说，专业不是冷，而是稳。
-								</p>
-							</div>
-						</div>
 
-						<div class="grid gap-5">
 							<div
-								class="rounded-3xl p-5 futuristic-panel"
+								class="rounded p-4 sm:p-5 mb-4"
 								style={{
-									backgroundColor: "var(--theme-welcomeBoxBg)",
+									backgroundColor: "var(--theme-background)",
 									border: `1px solid var(--theme-border)`,
 								}}
 							>
-								<div class="f-section-title">What I Do</div>
-								<ul class="f-list">
-									<li>业务伙伴支持</li>
-									<li>招聘与人才配置</li>
-									<li>组织发展与人才培养</li>
-								</ul>
+								<div
+									class="text-xs sm:text-sm mb-3 tracking-[0.2em] uppercase"
+									style={{ color: "var(--theme-secondary)" }}
+								>
+									Opening Statement
+								</div>
+								<h1
+									class="text-xl sm:text-3xl leading-snug font-bold mb-3"
+									style={{ color: "var(--theme-primary)" }}
+								>
+									懂技术，也懂业务；重视效率，也相信温度。
+								</h1>
+								<p
+									class="text-sm sm:text-base leading-7 mb-3"
+									style={{ color: "var(--theme-outputText)" }}
+								>
+									我是 {profileConfig.profile.name}。在我的理解里，HR
+									不是流程的看守者，也不只是支持部门。HR 更像一种连接:
+									把业务目标、组织能力与人的成长放在同一张坐标纸上，
+									帮助团队在变化里保持秩序，在压力里保有人心。
+								</p>
+								<p
+									class="text-sm sm:text-base leading-7"
+									style={{ color: "var(--theme-outputText)" }}
+								>
+									我关心招聘是否真正匹配业务，也关心组织是否为人留下成长空间；
+									我相信制度的必要，也相信理解、同理与责任感同样构成组织的底色。
+								</p>
 							</div>
 
-							<div
-								class="rounded-3xl p-5 futuristic-panel"
-								style={{
-									backgroundColor: "var(--theme-welcomeBoxBg)",
-									border: `1px solid var(--theme-border)`,
-								}}
-							>
-								<div class="f-section-title">What I Believe</div>
-								<ul class="f-list">
-									<li>业务理解和人文关怀，不必二选一</li>
-									<li>效率不该以忽视人的感受为代价</li>
-									<li>真正稳健的团队，来自长期积累</li>
-								</ul>
+							<div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-4">
+								<div
+									class="rounded p-3"
+									style={{
+										backgroundColor:
+											"var(--theme-background)",
+										border: `1px solid var(--theme-border)`,
+									}}
+								>
+									<h3
+										class="font-semibold mb-2 flex items-center"
+										style={{
+											color: "var(--theme-warning)",
+										}}
+									>
+										01 / 我在做什么
+									</h3>
+									<ul
+										class="text-sm space-y-1"
+										style={{ color: "var(--theme-outputText)" }}
+									>
+										<li>• 做业务伙伴支持，不让人力资源停留在纸面上</li>
+										<li>• 做招聘与人才配置，让关键岗位更贴近真实需求</li>
+										<li>• 做组织发展与人才培养，让团队能力能被持续积累</li>
+										<li>• 在复杂协同里，尽量把问题讲清，把人放稳</li>
+									</ul>
+								</div>
+
+								<div
+									class="rounded p-3"
+									style={{
+										backgroundColor:
+											"var(--theme-background)",
+										border: `1px solid var(--theme-border)`,
+									}}
+								>
+									<h3
+										class="font-semibold mb-2 flex items-center"
+										style={{ color: "var(--theme-info)" }}
+									>
+										02 / 我相信什么
+									</h3>
+									<ul
+										class="text-sm space-y-1"
+										style={{ color: "var(--theme-outputText)" }}
+									>
+										<li>• 业务理解和人文关怀，从来不是二选一</li>
+										<li>• 组织的效率，不能以忽视人的感受为代价</li>
+										<li>• 真正稳健的团队，来自长期主义而不是短期修补</li>
+										<li>• 家国情感不是口号，而是对工作意义感的更大坐标</li>
+									</ul>
+								</div>
 							</div>
-						</div>
-					</section>
 
-					<section class="grid grid-cols-1 sm:grid-cols-3 gap-5">
+							<div class="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-4">
 								<div
-									class="rounded-3xl p-5 futuristic-panel"
+									class="rounded p-4"
 									style={{
-										backgroundColor:
-											"var(--theme-welcomeBoxBg)",
-										border: `1px solid var(--theme-border)`,
-									}}
-								>
-									<div class="f-section-title">Business</div>
-									<p class="text-sm leading-7" style={{ color: "var(--theme-outputText)" }}>
-										理解业务节奏与关键岗位，让 HR 真正贴近现实，也贴近结果。
-									</p>
-								</div>
-
-								<div
-									class="rounded-3xl p-5 futuristic-panel"
-									style={{
-										backgroundColor:
-											"var(--theme-welcomeBoxBg)",
-										border: `1px solid var(--theme-border)`,
-									}}
-								>
-									<div class="f-section-title">People</div>
-									<p class="text-sm leading-7" style={{ color: "var(--theme-outputText)" }}>
-										关注人的匹配、成长与尊严，不想把人变成流程里的一个零件。
-									</p>
-								</div>
-
-								<div
-									class="rounded-3xl p-5 futuristic-panel"
-									style={{
-										backgroundColor: "var(--theme-welcomeBoxBg)",
-										border: `1px solid var(--theme-border)`,
-									}}
-								>
-									<div class="f-section-title">Time</div>
-									<p class="text-sm leading-7" style={{ color: "var(--theme-outputText)" }}>
-										相信长期主义。重要的事未必立刻发光，但值得慢慢做下去。
-									</p>
-								</div>
-					</section>
-
-					<section class="grid grid-cols-1 sm:grid-cols-2 gap-5">
-								<a
-									href="/blogs"
-									class="rounded-3xl p-6 block transition-all duration-300 hover:-translate-y-1 futuristic-panel"
-									style={{
-										backgroundColor: "var(--theme-welcomeBoxBg)",
+										backgroundColor: "var(--theme-background)",
 										border: `1px solid var(--theme-border)`,
 									}}
 								>
 									<div
-										class="text-xs uppercase tracking-[0.25em] mb-3"
+										class="text-xs uppercase tracking-[0.2em] mb-2"
 										style={{ color: "var(--theme-secondary)" }}
 									>
-										Reflections
+										Business
+									</div>
+									<p
+										class="text-sm leading-7"
+										style={{ color: "var(--theme-outputText)" }}
+									>
+										理解业务节奏、团队诉求和关键岗位的重要性，让 HR
+										真正服务于结果。
+									</p>
+								</div>
+								<div
+									class="rounded p-4"
+									style={{
+										backgroundColor: "var(--theme-background)",
+										border: `1px solid var(--theme-border)`,
+									}}
+								>
+									<div
+										class="text-xs uppercase tracking-[0.2em] mb-2"
+										style={{ color: "var(--theme-accent)" }}
+									>
+										People
+									</div>
+									<p
+										class="text-sm leading-7"
+										style={{ color: "var(--theme-outputText)" }}
+									>
+										关注人的匹配、成长、尊严和潜能释放，不把人当作流程中的零件。
+									</p>
+								</div>
+								<div
+									class="rounded p-4"
+									style={{
+										backgroundColor: "var(--theme-background)",
+										border: `1px solid var(--theme-border)`,
+									}}
+								>
+									<div
+										class="text-xs uppercase tracking-[0.2em] mb-2"
+										style={{ color: "var(--theme-primary)" }}
+									>
+										Time
+									</div>
+									<p
+										class="text-sm leading-7"
+										style={{ color: "var(--theme-outputText)" }}
+									>
+										相信长期主义。很多真正重要的事，无法在一个季度里立刻显现，但值得慢慢做。
+									</p>
+								</div>
+							</div>
+
+							<div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-4">
+								<a
+									href="/blogs"
+									class="rounded p-4 block transition-opacity hover:opacity-90"
+									style={{
+										backgroundColor: "var(--theme-background)",
+										border: `1px solid var(--theme-border)`,
+									}}
+								>
+									<div
+										class="text-xs uppercase tracking-[0.2em] mb-2"
+										style={{ color: "var(--theme-secondary)" }}
+									>
+										Module A
 									</div>
 									<h3
-										class="text-2xl font-semibold mb-3"
-										style={{ color: "var(--theme-text)" }}
+										class="text-lg font-semibold mb-2"
+										style={{ color: "var(--theme-primary)" }}
 									>
 										生活感悟
 									</h3>
@@ -232,29 +282,29 @@ import profileConfig from "../../profile.config";
 										class="text-sm leading-7"
 										style={{ color: "var(--theme-outputText)" }}
 									>
-										记录工作、关系、成长与日常心绪里，那些慢慢想明白的话。
+										记录我对工作、关系、成长、秩序与温度的思考。
 									</p>
-									<div class="mt-4 text-xs" style={{ color: "var(--theme-secondary)" }}>
-										View writings →
+									<div class="mt-3 text-xs" style={{ color: "var(--theme-muted)" }}>
+										open /blogs → reflections
 									</div>
 								</a>
 								<a
 									href="/blogs"
-									class="rounded-3xl p-6 block transition-all duration-300 hover:-translate-y-1 futuristic-panel"
+									class="rounded p-4 block transition-opacity hover:opacity-90"
 									style={{
-										backgroundColor: "var(--theme-welcomeBoxBg)",
+										backgroundColor: "var(--theme-background)",
 										border: `1px solid var(--theme-border)`,
 									}}
 								>
 									<div
-										class="text-xs uppercase tracking-[0.25em] mb-3"
+										class="text-xs uppercase tracking-[0.2em] mb-2"
 										style={{ color: "var(--theme-accent)" }}
 									>
-										Reading Notes
+										Module B
 									</div>
 									<h3
-										class="text-2xl font-semibold mb-3"
-										style={{ color: "var(--theme-text)" }}
+										class="text-lg font-semibold mb-2"
+										style={{ color: "var(--theme-primary)" }}
 									>
 										读书笔记
 									</h3>
@@ -262,87 +312,74 @@ import profileConfig from "../../profile.config";
 										class="text-sm leading-7"
 										style={{ color: "var(--theme-outputText)" }}
 									>
-										摘录那些让我停下来的句子，整理一本书真正留在心里的部分。
+										摘录那些让我停下来的一段话，整理读完一本书之后真正留在心里的东西，看它们怎样回到现实里。
 									</p>
-									<div class="mt-4 text-xs" style={{ color: "var(--theme-accent)" }}>
-										Explore notes →
+									<div class="mt-3 text-xs" style={{ color: "var(--theme-muted)" }}>
+										open /blogs → reading notes
 									</div>
 								</a>
-					</section>
+							</div>
 
-					<section
-						class="rounded-3xl p-6 sm:p-8 futuristic-panel"
-						style={{
-							backgroundColor: "var(--theme-welcomeBoxBg)",
-							border: `1px solid var(--theme-border)`,
-						}}
-					>
+							<div
+								class="rounded p-4 sm:p-5 text-left"
+								style={{
+									backgroundColor: "var(--theme-background)",
+									border: `1px solid var(--theme-border)`,
+								}}
+							>
 								<div
-									class="text-xs sm:text-sm mb-3 tracking-[0.25em] uppercase"
+									class="text-xs sm:text-sm mb-3 tracking-[0.2em] uppercase"
 									style={{ color: "var(--theme-secondary)" }}
 								>
-									Contact
+									Closing
 								</div>
 								<p
-									class="text-lg sm:text-2xl leading-9 mb-3 max-w-3xl"
-									style={{ color: "var(--theme-text)" }}
-								>
-									如果你也在关心团队、人才、组织，欢迎来找我。
-								</p>
-								<p
-									class="text-sm sm:text-base leading-8 mb-4 max-w-3xl"
+									class="text-sm sm:text-base leading-7 mb-3"
 									style={{ color: "var(--theme-outputText)" }}
 								>
-									也许我们会聊到业务、成长，或者那些看起来很小、其实很重要的事。
+									如果你正在寻找一位既能进入业务语境、又能理解组织和人的 HR，
+									欢迎和我聊聊。也许我们可以一起讨论团队、人才，或者一件值得长期去做的事。
 								</p>
-								<div class="flex flex-wrap gap-3 text-sm">
-									<span class="f-chip">qinfeiyii@gmail.com</span>
-									<span class="f-chip">Beijing</span>
-									<span class="f-chip">GitHub /feiyiiii</span>
+								<div class="text-sm" style={{ color: "var(--theme-muted)" }}>
+									contact: <span style={{ color: "var(--theme-primary)" }}>qinfeiyii@gmail.com</span> | location:
+									<span style={{ color: "var(--theme-info)" }}> 北京</span>
 								</div>
-					</section>
+							</div>
 
+							<div class="text-center mt-4">
+								<p
+									class="text-sm mb-2"
+									style={{ color: "var(--theme-muted)" }}
+								>
+									A narrative homepage presented through a <span
+										class="font-semibold"
+										style={{
+											color: "var(--theme-primary)",
+										}}>terminal-style interface</span
+									>
+								</p>
+								<p
+									class="text-xs"
+									style={{ color: "var(--theme-muted)" }}
+								>
+									Quick commands: <span
+										style={{ color: "var(--theme-info)" }}
+										>about</span
+									> | <span
+										style={{
+											color: "var(--theme-secondary)",
+										}}>skills</span
+									> | <span
+										style={{ color: "var(--theme-accent)" }}
+										>hire-me</span
+									>
+								</p>
+							</div>
+						</div>
+					</div>
 				</div>
 			</main>
 			<Footer />
 		</div>
 	</body>
 </html>
-<!-- 
-<script>
-	const inputCapture = document.querySelector("input");
-	if (inputCapture) {
-		// disable welcome box input
-		inputCapture.focus();
-		inputCapture.addEventListener("keydown", (e) => {
-			if (e.key === "Enter") {
-				const welcomeBox = document.getElementById("welcome-box");
-				console.log(welcomeBox);
-				if (welcomeBox) {
-					welcomeBox.style.display = "none";
-				}
-				e.preventDefault();
-				// Here you can handle the command input
-				const command = inputCapture.value.trim();
-				if (command) {
-					console.log("Command entered:", command);
-					// Clear input after processing
-					if (command === "help") {
-						// Show help commands
-						const commandOutput =
-							document.getElementById("command-output");
-						if (commandOutput) {
-							commandOutput.style.display = "block";
-						}
-					} else if (command === "clear") {
-						// Clear terminal (for simplicity, just reload)
-						location.reload();
-					} else {
-						alert(`Command not found: ${command}`);
-					}
-					inputCapture.value = "";
-				}
-			}
-		});
-	}
-</script> -->
