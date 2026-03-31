@@ -155,159 +155,144 @@ export interface ProfileConfig {
 // Default configuration - Users can override any of these values
 export const profileConfig: ProfileConfig = {
   profile: {
-    name: "Hrithik Dhakrey",
-    username: "iamdhakrey",
-    title: "Full Stack Developer & Open Source Enthusiast",
-    description: "Passionate developer creating awesome solutions with Rust, TypeScript, and Go",
-    bio: "I'm a passionate developer who loves creating innovative solutions and learning new technologies. Always excited to work on interesting projects and collaborate with fellow developers!",
+    name: "AimerQ",
+    username: "aimerq",
+    title: "懂技术、懂业务、有人文关怀和家国情感的HR",
+    description: "一位连接业务、人才与组织的 HR，关注组织成长、人才发展与长期价值创造。",
+    bio: "我是一名长期扎根业务一线的人力资源从业者，既理解技术和组织运作，也重视人的成长、尊严与潜能释放。我相信，好的 HR 不只是支持业务，更是在效率与温度之间搭桥，在组织目标、人才发展与社会责任之间寻找更长期的平衡。",
     image: "/H.svg",
-    website: "https://iamdhakrey.dev",
-    location: "Delhi, India",
-    email: "your.email@example.com",
+    website: "https://github.com/",
+    location: "北京",
+    email: "qinfeiyii@gmail.com",
     currentFocus: [
-      "Building modern web applications with Rust and TypeScript",
-      "Developing desktop applications with Tauri",
-      "Creating robust APIs with Go and Echo framework",
-      "Contributing to open source projects"
+      "支持业务伙伴，提升组织协同效率",
+      "推动招聘与人才配置更贴近业务发展节奏",
+      "关注组织发展与人才培养的长期机制建设",
+      "在制度、关怀与价值观之间找到更好的平衡"
     ],
-    funFact: "I maintain multiple projects in Rust, Go, and TypeScript! 🚀"
+    funFact: "我相信组织的竞争力，最终来自人被看见、被激发，也被善待。"
   },
 
   socialLinks: {
-    github: "https://github.com/iamdhakrey",
-    website: "https://iamdhakrey.dev",
-    telegram: "https://t.me/iamdhakrey"
+    github: "https://github.com/"
   },
 
   skills: [
-    "Rust",
-    "TypeScript",
-    "JavaScript",
-    "Go",
-    "Python",
-    "React",
-    "Tauri",
-    "Node.js",
-    "Docker",
-    "Linux"
+    "业务伙伴支持",
+    "招聘与人才配置",
+    "组织发展与人才培养"
   ],
 
   stats: {
-    projects: "18+",
-    profileViews: "1.2k+",
-    streak: "45 days",
-    totalStars: "5+"
+    projects: "HRBP",
+    profileViews: "People First",
+    streak: "长期主义",
+    totalStars: "组织共成长"
   },
 
   achievements: [
     {
-      title: "Rust Developer",
-      description: "Building high-performance applications with Rust",
-      icon: "🦀"
+      title: "业务伙伴",
+      description: "理解业务目标，并把人力支持真正做到业务现场",
+      icon: "🤝"
     },
     {
-      title: "Open Source Contributor",
-      description: "Maintaining several public repositories",
-      icon: "🌟"
+      title: "人才配置",
+      description: "关注岗位匹配、招聘效率与关键人才引入",
+      icon: "🎯"
     },
     {
-      title: "Full-Stack Developer",
-      description: "End-to-end application development",
-      icon: "🚀"
+      title: "组织发展",
+      description: "推动团队协同、人才培养与组织能力建设",
+      icon: "🌱"
     },
     {
-      title: "Desktop App Developer",
-      description: "Building cross-platform apps with Tauri",
-      icon: "💻"
+      title: "人文关怀",
+      description: "相信制度之外，还需要理解、同理与责任感",
+      icon: "❤️"
     }
   ],
 
   terminal: {
-    hostname: "iamdhakrey.dev",
-    username: "iamdhakrey",
-    theme: "dark",
+    hostname: "aimerq.local",
+    username: "aimerq",
+    theme: "cyberpunk",
     welcomeMessage: [
       "",
       "╭─────────────────────────────────────────────────────────────────────────────╮",
       "│                                                                             │",
-      "│    ██╗ █████╗ ███╗   ███╗██████╗ ██╗  ██╗ █████╗ ██╗  ██╗██████╗ ███████╗██╗   ██╗",
-      "│    ██║██╔══██╗████╗ ████║██╔══██╗██║  ██║██╔══██╗██║ ██╔╝██╔══██╗██╔════╝╚██╗ ██╔╝",
-      "│    ██║███████║██╔████╔██║██║  ██║███████║███████║█████╔╝ ██████╔╝█████╗   ╚████╔╝ ",
-      "│    ██║██╔══██║██║╚██╔╝██║██║  ██║██╔══██║██╔══██║██╔═██╗ ██╔══██╗██╔══╝    ╚██╔╝  ",
-      "│    ██║██║  ██║██║ ╚═╝ ██║██████╔╝██║  ██║██║  ██║██║  ██╗██║  ██║███████╗   ██║   ",
-      "│    ╚═╝╚═╝  ╚═╝╚═╝     ╚═╝╚═════╝ ╚═╝  ╚═╝╚═╝  ╚═╝╚═╝  ╚═╝╚═╝  ╚═╝╚══════╝   ╚═╝   ",
+      "│      █████╗ ██╗███╗   ███╗███████╗██████╗  ██████╗                         │",
+      "│     ██╔══██╗██║████╗ ████║██╔════╝██╔══██╗██╔═══██╗                        │",
+      "│     ███████║██║██╔████╔██║█████╗  ██████╔╝██║   ██║                        │",
+      "│     ██╔══██║██║██║╚██╔╝██║██╔══╝  ██╔══██╗██║▄▄ ██║                        │",
+      "│     ██║  ██║██║██║ ╚═╝ ██║███████╗██║  ██║╚██████╔╝                        │",
+      "│     ╚═╝  ╚═╝╚═╝╚═╝     ╚═╝╚══════╝╚═╝  ╚═╝ ╚══▀▀═╝                         │",
       "│                                                                             │",
-      "│                          🚀 INTERACTIVE DEVELOPER TERMINAL v2.1            │",
+      "│                     HUMAN-CENTERED HR TERMINAL // BEIJING                  │",
       "│                                                                             │",
       "├─────────────────────────────────────────────────────────────────────────────┤",
       "│                                                                             │",
-      "│  💫 Welcome to my digital workspace! I'm a passionate developer who loves   │",
-      "│     building innovative solutions with modern technologies.                 │",
+      "│  欢迎来到 AimerQ 的个人终端。这里记录我对业务、人才与组织的理解。             │",
       "│                                                                             │",
-      "│  🎯 What you can do here:                                                   │",
-      "│     ▸ Explore my projects and skills                                       │",
-      "│     ▸ Read my technical blog posts                                         │",
-      "│     ▸ Play with interactive commands                                       │",
-      "│     ▸ Discover easter eggs and hidden features                             │",
+      "│  你可以在这里快速了解：                                                     │",
+      "│     ▸ 我的 HR 视角与工作方法                                                │",
+      "│     ▸ 业务伙伴支持、招聘配置与组织发展重点                                  │",
+      "│     ▸ 我对人才成长、人文关怀与长期价值的思考                                │",
       "│                                                                             │",
-      "│  ⚡ Quick Start:                                                            │",
-      "│     ▸ Type 'help' for a comprehensive command guide                        │",
-      "│     ▸ Try 'neofetch' to see system information                             │",
-      "│     ▸ Use 'skills' to explore my technical abilities                       │",
-      "│     ▸ Run 'cd projects' to browse my work                                  │",
+      "│  快速查看：                                                                 │",
+      "│     ▸ help    查看可用命令                                                  │",
+      "│     ▸ about   了解我的背景与介绍                                            │",
+      "│     ▸ skills  查看我的核心能力                                              │",
+      "│     ▸ hire-me 获取联系信息                                                  │",
       "│                                                                             │",
-      "│  💡 Pro Tips:                                                              │",
-      "│     ▸ Use ↑/↓ arrows to navigate command history                           │",
-      "│     ▸ Press Tab for command auto-completion                                │",
-      "│     ▸ Try aliases like 'll', 'cls', or 'h' for shortcuts                  │",
+      "│  关键词：                                                                   │",
+      "│     ▸ 业务理解  ▸ 组织协同  ▸ 人才发展  ▸ 长期主义                          │",
       "│                                                                             │",
       "╰─────────────────────────────────────────────────────────────────────────────╯",
       "",
-      "🌟 Ready to explore? The terminal awaits your commands...",
+      "欢迎继续向下浏览，看看这个终端式主页如何呈现一个 HR 的专业与温度。",
       ""
     ],
     customCommands: {
       "hire-me": {
         description: "Get my contact information",
         output: [
-          "📧 Contact Information:",
+          "Contact Information:",
           "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━",
           "",
-          "Email: your.email@example.com",
-          "LinkedIn: linkedin.com/in/iamdhakrey",
-          "GitHub: github.com/iamdhakrey",
+          "Name: AimerQ",
+          "Email: qinfeiyii@gmail.com",
+          "Location: Beijing",
+          "GitHub: https://github.com/",
           "",
-          "💼 Available for:",
-          "• Full-time opportunities",
-          "• Freelance projects",
-          "• Open source collaboration",
-          "• Technical consulting",
+          "Focus Areas:",
+          "• Business partnering",
+          "• Recruiting and talent allocation",
+          "• Organizational development and talent growth",
           "",
-          "Let's build something amazing together! 🚀"
+          "Let's connect around people, business, and long-term organizational value."
         ]
       },
       "coffee": {
         description: "Buy me a coffee",
         output: [
-          "☕ Thanks for considering!",
+          "Thanks for visiting!",
           "",
-          "If you like my work, you can support me:",
-          "• GitHub Sponsors: github.com/sponsors/iamdhakrey",
-          "• Ko-fi: ko-fi.com/iamdhakrey",
-          "• PayPal: paypal.me/iamdhakrey",
+          "This page is a small experiment in presenting an HR profile in terminal style.",
+          "If it resonates with you, feel free to reach out by email.",
           "",
-          "Every coffee helps me code better! ☕💻"
+          "Meaningful work starts with meaningful conversations."
         ]
       },
       "joke": {
         description: "Tell a programming joke",
         output: () => {
           const jokes = [
-            "Why do programmers prefer dark mode? Because light attracts bugs! 🐛",
-            "How many programmers does it take to change a light bulb? None, that's a hardware problem! 💡",
-            "Why do Java developers wear glasses? Because they can't C#! 👓",
-            "There are only 10 types of people in the world: those who understand binary and those who don't.",
-            "A SQL query goes into a bar, walks up to two tables and asks: 'Can I join you?' 🍺"
+            "A good HR doesn't just fill a role. A good HR helps the role find the right person.",
+            "Recruiting is not speed dating. It's long-term compatibility with consequences.",
+            "The best org chart is the one people can feel in collaboration, not just see in a slide deck.",
+            "Sometimes the real KPI is whether people still want to build together after a hard quarter.",
+            "Business grows faster when trust doesn't need to wait for process."
           ];
           return [jokes[Math.floor(Math.random() * jokes.length)]];
         }
@@ -319,23 +304,23 @@ export const profileConfig: ProfileConfig = {
       "cat", "man", "history", "date", "uptime", "uname", "parrot", "sl",
       "hire-me", "coffee", "joke"
     ],
-    prompt: "hrithik@iamdhakrey.dev:~$"
+    prompt: "aimerq@beijing:~$"
   },
 
   systemInfo: {
-    os: "Arch Linux x86_64",
-    host: "yourwebsite.dev",
-    kernel: "6.1.0-kali7-amd64",
-    uptime: "2 hours, 34 mins",
-    packages: "1337 (pacman)",
-    shell: "zsh 5.9",
-    resolution: "1920x1080",
-    de: "Awesome",
-    wm: "Awesome",
-    terminal: "alacritty",
-    cpu: "Intel i7-10750H (12) @ 2.6GHz",
-    gpu: "NVIDIA GeForce GTX 1650",
-    memory: "3840MiB / 15951MiB"
+    os: "Human-Centered HR OS",
+    host: "Beijing",
+    kernel: "Business x People 1.0",
+    uptime: "Long-termist mode: enabled",
+    packages: "Empathy, structure, judgment",
+    shell: "dialogue + execution",
+    resolution: "See people, see business, see context",
+    de: "Clarity",
+    wm: "Trust",
+    terminal: "AimerQ",
+    cpu: "Systems thinking",
+    gpu: "Human insight",
+    memory: "Care, discipline, and responsibility"
   },
 
   projects: {
@@ -350,19 +335,18 @@ export const profileConfig: ProfileConfig = {
 
   blogs: {
     enabled: true,
-    featuredPosts: ["blog-linking-guide", "react-typescript-guide", "linux_commands"],
-    categories: ["React", "TypeScript", "Linux", "DevOps", "Tutorial", "Programming", "Documentation"],
+    featuredPosts: ["why-i-still-believe-in-gentleness", "reading-notes-the-ordinary-world"],
+    categories: ["生活感悟", "读书笔记"],
     availableBlogs: [
-      "blog-linking-guide.md",
-      "react-typescript-guide.md",
+      "why-i-still-believe-in-gentleness.md",
+      "reading-notes-the-ordinary-world.md",
     ]
   },
 
   seo: {
-    siteName: "Hrithik Dhakrey - Developer Portfolio",
-    keywords: ["developer", "portfolio", "rust", "typescript", "go", "full-stack", "open-source"],
-    author: "Hrithik Dhakrey",
-    twitterHandle: "@iamdhakrey",
+    siteName: "AimerQ - HR Terminal Portfolio",
+    keywords: ["HR", "HRBP", "招聘", "人才配置", "组织发展", "人才培养", "北京"],
+    author: "AimerQ",
     ogImage: "/og-image.jpg"
   },
 
@@ -378,14 +362,12 @@ export const profileConfig: ProfileConfig = {
   },
 
   navigation: {
-    brandName: "iamdhakrey.dev",
+    brandName: "aimerq.terminal",
     brandUrl: "/",
     links: [
-      { name: "blogs", path: "/blogs", color: "var(--theme-primary)" },
-      { name: "projects", path: "/projects", color: "var(--theme-secondary)" },
-      // { name: "profile", path: "/profile", color: "var(--theme-accent)" },
-      { name: "tg", path: "https://t.me/iamdhakrey", external: true, color: "var(--theme-muted)" },
-      { name: "gh", path: "https://github.com/iamdhakrey/", external: true, color: "var(--theme-muted)" }
+      { name: "notes", path: "/blogs", color: "var(--theme-accent)" },
+      { name: "gh", path: "https://github.com/", external: true, color: "var(--theme-secondary)" },
+      { name: "mail", path: "mailto:qinfeiyii@gmail.com", external: true, color: "var(--theme-primary)" }
     ],
     systemInfo: {
       // os: "Linux 6.1.0",
@@ -398,12 +380,12 @@ export const profileConfig: ProfileConfig = {
     statusMessage: "Connected",
     madeWithLove: {
       enabled: true,
-      text: "Made with ❤️ and ⚡",
-      location: "Arch Linux"
+      text: "Made with care, structure, and long-termism",
+      location: "北京"
     },
     systemStatus: {
       enabled: true,
-      message: "Linux 6.15.0 •  System OK"
+      message: "People x Business x Trust • System OK"
     }
   }
 };

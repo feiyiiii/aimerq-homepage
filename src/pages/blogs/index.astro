@@ -11,10 +11,12 @@ const posts = (await getCollection("blog")).sort(
     (a: { data: { pubDate: number } }, b: { data: { pubDate: number } }) =>
         b.data.pubDate.valueOf() - a.data.pubDate.valueOf(),
 );
+const reflections = posts.filter((post: any) => post.data.category === "生活感悟");
+const readingNotes = posts.filter((post: any) => post.data.category === "读书笔记");
 ---
 
 <!doctype html>
-<html lang="en" data-theme="dark">
+<html lang="zh-CN" data-theme="cyberpunk">
     <head>
         <BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
     </head>
@@ -27,13 +29,37 @@ const posts = (await getCollection("blog")).sort(
                 color: "var(--theme-text)",
             }}
         >
-            <div class="space-y-4">
+            <div class="space-y-4 max-w-screen-xl mx-auto px-4 py-8">
                 <div
-                    class="max-w-screen-xl mx-auto px-4 py-8 grid gap-6 sm:grid-cols-1 md:grid-cols-1 lg:grid-cols-1"
+                    class="rounded-lg p-5 sm:p-6"
+                    style={{
+                        backgroundColor: "var(--theme-welcomeBoxBg)",
+                        border: "1px solid var(--theme-border)",
+                    }}
                 >
+                    <div class="text-xs uppercase tracking-[0.25em] mb-3" style={{ color: "var(--theme-secondary)" }}>
+                        Writings
+                    </div>
+                    <h1 class="text-2xl sm:text-4xl font-bold mb-3" style={{ color: "var(--theme-primary)" }}>
+                        随笔与笔记
+                    </h1>
+                    <p class="text-sm sm:text-base leading-7 max-w-3xl" style={{ color: "var(--theme-outputText)" }}>
+                        这里放的是我的生活感悟和读书笔记。它们不是为了显得“会表达”，而是为了留下一些真正思考过、感受过、愿意反复回看的内容。
+                    </p>
+                </div>
+
+                <section class="space-y-4">
+                    <div class="flex items-center justify-between">
+                        <h2 class="text-lg sm:text-2xl font-semibold" style={{ color: "var(--theme-primary)" }}>
+                            生活感悟
+                        </h2>
+                        <span class="text-xs sm:text-sm" style={{ color: "var(--theme-muted)" }}>
+                            reflections.log
+                        </span>
+                    </div>
+                    <div class="grid gap-6 sm:grid-cols-1 md:grid-cols-1 lg:grid-cols-1">
                     {
-                        posts &&
-                            posts.map((blog: any, index: number) => (
+                        reflections.map((blog: any, index: number) => (
                                 <div
                                     class="rounded-lg transition-all duration-300 group"
                                     style={{
@@ -48,12 +74,12 @@ const posts = (await getCollection("blog")).sort(
                                     >
                                         <div class="flex flex-col sm:flex-row sm:items-start space-y-3 sm:space-y-0 sm:space-x-4">
                                             {/* File permissions and info */}
-                                            <div
-                                                class="text-xs font-mono mt-3 min-w-fit flex sm:flex-col space-x-4 sm:space-x-0"
-                                                style={{ color: "var(--theme-muted)" }}
-                                            >
-                                                <div>-rw-r--r--</div>
-                                                <div style={{ color: "var(--theme-secondary)" }}>
+                                                <div
+                                                    class="text-xs font-mono mt-3 min-w-fit flex sm:flex-col space-x-4 sm:space-x-0"
+                                                    style={{ color: "var(--theme-muted)" }}
+                                                >
+                                                    <div>-rw-r--r--</div>
+                                                    <div style={{ color: "var(--theme-secondary)" }}>
                                                     {String(index + 1).padStart(
                                                         3,
                                                         "0",
@@ -79,7 +105,7 @@ const posts = (await getCollection("blog")).sort(
                                                         class="text-sm"
                                                         style={{ color: "var(--theme-muted)" }}
                                                     >
-                                                        .md
+                                                        .note
                                                     </span>
                                                 </div>
 
@@ -93,12 +119,9 @@ const posts = (await getCollection("blog")).sort(
                                                             }
                                                         />
                                                     </span>
-                                                    {blog.data.author && (
-                                                        <span style={{ color: "var(--theme-warning)" }}>
-                                                            👤{" "}
-                                                            {blog.data.author}
-                                                        </span>
-                                                    )}
+                                                    <span style={{ color: "var(--theme-warning)" }}>
+                                                        ✍️ {blog.data.author || "AimerQ"}
+                                                    </span>
                                                     <span style={{ color: "var(--theme-muted)" }}>
                                                         size:{" "}
                                                         {Math.floor(
@@ -130,7 +153,7 @@ const posts = (await getCollection("blog")).sort(
                                                         ${" "}
                                                     </span>
                                                     <span>
-                                                        cat {blog.data.title}
+                                                        read {blog.data.title}
                                                     </span>
                                                     <span class="ml-2" style={{ color: "var(--theme-primary)" }}>
                                                         → click to read
@@ -178,6 +201,107 @@ const posts = (await getCollection("blog")).sort(
                                 </div>
                             ))
                     }
+                    </div>
+                </section>
+
+                <section class="space-y-4">
+                    <div class="flex items-center justify-between">
+                        <h2 class="text-lg sm:text-2xl font-semibold" style={{ color: "var(--theme-primary)" }}>
+                            读书笔记
+                        </h2>
+                        <span class="text-xs sm:text-sm" style={{ color: "var(--theme-muted)" }}>
+                            reading-notes.log
+                        </span>
+                    </div>
+                    <div class="grid gap-6 sm:grid-cols-1 md:grid-cols-1 lg:grid-cols-1">
+                    {
+                        readingNotes.map((blog: any, index: number) => (
+                                <div
+                                    class="rounded-lg transition-all duration-300 group"
+                                    style={{
+                                        backgroundColor: "var(--theme-welcomeBoxBg)",
+                                        border: "1px solid var(--theme-border)",
+                                    }}
+                                >
+                                    <a
+                                        class="block p-4 sm:p-6 transition-colors rounded-lg"
+                                        href={`/blogs/${blog.id}`}
+                                        style={{ color: "var(--theme-text)" }}
+                                    >
+                                        <div class="flex flex-col sm:flex-row sm:items-start space-y-3 sm:space-y-0 sm:space-x-4">
+                                            <div
+                                                class="text-xs font-mono mt-3 min-w-fit flex sm:flex-col space-x-4 sm:space-x-0"
+                                                style={{ color: "var(--theme-muted)" }}
+                                            >
+                                                <div>-rw-r--r--</div>
+                                                <div style={{ color: "var(--theme-accent)" }}>
+                                                    {String(index + 1).padStart(3, "0")}
+                                                </div>
+                                            </div>
+                                            <div class="flex-1">
+                                                <div class="flex flex-col sm:flex-row sm:items-center space-y-2 sm:space-y-0 sm:space-x-2 mb-2">
+                                                    <div class="flex items-center space-x-2">
+                                                        <span style={{ color: "var(--theme-accent)" }}>
+                                                            📚
+                                                        </span>
+                                                        <h2
+                                                            class="text-lg sm:text-xl font-semibold transition-colors"
+                                                            style={{ color: "var(--theme-text)" }}
+                                                        >
+                                                            {blog.data.title}
+                                                        </h2>
+                                                    </div>
+                                                    <span
+                                                        class="text-sm"
+                                                        style={{ color: "var(--theme-muted)" }}
+                                                    >
+                                                        .book
+                                                    </span>
+                                                </div>
+                                                <div class="flex flex-col sm:flex-row sm:items-center space-y-1 sm:space-y-0 sm:space-x-4 text-xs sm:text-sm">
+                                                    <span style={{ color: "var(--theme-secondary)" }}>
+                                                        📅 <FormattedDate date={blog.data.pubDate} />
+                                                    </span>
+                                                    <span style={{ color: "var(--theme-warning)" }}>
+                                                        📝 {blog.data.author || "AimerQ"}
+                                                    </span>
+                                                    <span style={{ color: "var(--theme-muted)" }}>
+                                                        read-time: {blog.data.read_time || 4} min
+                                                    </span>
+                                                </div>
+                                                {blog.data.description && (
+                                                    <p
+                                                        class="mt-2 text-sm"
+                                                        style={{ color: "var(--theme-outputText)" }}
+                                                    >
+                                                        <span style={{ color: "var(--theme-muted)" }}>
+                                                            #{" "}
+                                                        </span>
+                                                        {blog.data.description}
+                                                    </p>
+                                                )}
+                                                <div class="mt-3 text-xs" style={{ color: "var(--theme-muted)" }}>
+                                                    <span style={{ color: "var(--theme-secondary)" }}>
+                                                        ${" "}
+                                                    </span>
+                                                    <span>open {blog.id}</span>
+                                                    <span class="ml-2" style={{ color: "var(--theme-primary)" }}>
+                                                        → click to read
+                                                    </span>
+                                                </div>
+                                            </div>
+                                            <div
+                                                class="opacity-0 group-hover:opacity-100 transition-opacity self-end sm:self-start"
+                                                style={{ color: "var(--theme-primary)" }}
+                                            >
+                                                →
+                                            </div>
+                                        </div>
+                                    </a>
+                                </div>
+                        ))
+                    }
+                    </div>
                 </div>
             </div>
         </div>

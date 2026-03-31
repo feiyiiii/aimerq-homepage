@@ -21,8 +21,9 @@ const { ...post } = Astro.props;
                     <button
                         class="hover:opacity-75 transition-colors"
                         style={{ color: "var(--theme-primary)" }}
+                        onclick="window.location.href='/blogs'"
                     >
-                        ← Back to blogs
+                        ← 返回随笔与笔记
                     </button>
                 </div>
             </nav>
@@ -88,7 +89,7 @@ const { ...post } = Astro.props;
                             d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"
                         ></path>
                     </svg>
-                    {post.data.read_time} min read
+                    {post.data.read_time || 4} min read
                 </div>
             </div>
 
