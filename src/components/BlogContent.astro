@@ -145,7 +145,8 @@ const formatText = (text: string) => {
 };
 
 // remove --- from start and end of markdown_content if present
-const cleanedContent = post.body.replace(/^---\n/, "").replace(/\n---$/, "");
+const rawBody = typeof post.body === "string" ? post.body : "";
+const cleanedContent = rawBody.replace(/^---\n/, "").replace(/\n---$/, "");
 const sections = parseContent(cleanedContent);
 ---
 
