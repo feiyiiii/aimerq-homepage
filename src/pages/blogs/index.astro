@@ -12,6 +12,7 @@ const posts = (await getCollection("blog")).sort(
 );
 const reflections = posts.filter((post: any) => post.data.category === "生活感悟");
 const readingNotes = posts.filter((post: any) => post.data.category === "读书笔记");
+const BLOG_EDIT_URL = "https://github.com/feiyiiii/aimerq-homepage/edit/main/src/pages/blogs/index.astro";
 ---
 
 <!doctype html>
@@ -50,6 +51,20 @@ const readingNotes = posts.filter((post: any) => post.data.category === "读书�
                     <p class="text-sm sm:text-base leading-8 max-w-3xl" style={{ color: "var(--theme-outputText)" }}>
                         这里放一些写给自己、也写给时间的文字。关于生活感悟，也关于读过之后仍然停留在心里的书。
                     </p>
+                    <div class="mt-6">
+                        <a
+                            href={BLOG_EDIT_URL}
+                            target="_blank"
+                            rel="noreferrer"
+                            class="inline-flex items-center rounded-full border px-4 py-2 text-sm transition-all hover:-translate-y-0.5"
+                            style={{
+                                color: "var(--theme-primary)",
+                                borderColor: "var(--theme-primary)",
+                            }}
+                        >
+                            编辑此页
+                        </a>
+                    </div>
                 </section>
 
                 <section class="space-y-4">
