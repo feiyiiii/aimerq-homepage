@@ -21,14 +21,17 @@ const editPostUrl = `https://github.com/feiyiiii/aimerq-homepage/edit/main/${sou
 <header class="blog-header-card">
     <div class="blog-header-body">
         <nav class="blog-toolbar">
-            <a class="blog-toolbar-link" href="/blogs">← 返回归档</a>
+            <div class="blog-toolbar-group">
+                <a class="blog-toolbar-link" href="/blogs">← 返回归档</a>
+                <a class="blog-toolbar-link" href="/blogs/studio">文档编辑器</a>
+            </div>
             <a
                 class="blog-toolbar-link blog-toolbar-link-primary"
                 href={editPostUrl}
                 target="_blank"
                 rel="noreferrer"
             >
-                编辑此文
+                GitHub编辑此文
             </a>
         </nav>
 
@@ -54,17 +57,8 @@ const editPostUrl = `https://github.com/feiyiiii/aimerq-homepage/edit/main/${sou
             <span class="blog-meta-item">{entry.data.read_time || 4} min read</span>
         </div>
 
-        <div class="blog-style-switcher" aria-label="博客风格切换">
-            <span class="blog-style-label">页面风格</span>
-            <button class="blog-style-btn" type="button" data-blog-style="aurora">
-                版本 A
-            </button>
-            <button class="blog-style-btn" type="button" data-blog-style="paper">
-                版本 B
-            </button>
-            <button class="blog-style-btn" type="button" data-blog-style="ink">
-                版本 C
-            </button>
+        <div class="blog-style-lock">
+            已启用视觉版本 A（Aurora）
         </div>
     </div>
 </header>

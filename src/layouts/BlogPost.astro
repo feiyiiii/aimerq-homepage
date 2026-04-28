@@ -80,6 +80,12 @@ const { ...post } = Astro.props;
 				margin-bottom: 1.25rem;
 			}
 
+			.blog-toolbar-group {
+				display: flex;
+				flex-wrap: wrap;
+				gap: 0.65rem;
+			}
+
 			.blog-toolbar-link {
 				display: inline-flex;
 				align-items: center;
@@ -144,40 +150,15 @@ const { ...post } = Astro.props;
 				opacity: 0.5;
 			}
 
-			.blog-style-switcher {
-				display: flex;
-				flex-wrap: wrap;
+			.blog-style-lock {
+				display: inline-flex;
 				align-items: center;
-				gap: 0.5rem;
-				margin-top: 0.25rem;
-			}
-
-			.blog-style-label {
-				font-size: 0.8rem;
-				color: var(--blog-muted);
-				margin-right: 0.35rem;
-			}
-
-			.blog-style-btn {
-				border: 1px solid var(--blog-border);
-				background: var(--blog-chip-bg);
-				color: var(--blog-text);
 				padding: 0.35rem 0.7rem;
+				border: 1px solid var(--blog-border);
 				border-radius: 999px;
+				background: var(--blog-chip-bg);
+				color: var(--blog-muted);
 				font-size: 0.78rem;
-				cursor: pointer;
-				transition: all 180ms ease;
-			}
-
-			.blog-style-btn:hover {
-				transform: translateY(-1px);
-				border-color: var(--blog-accent);
-			}
-
-			.blog-style-btn.is-active {
-				color: var(--blog-accent-contrast);
-				background: var(--blog-accent);
-				border-color: var(--blog-accent);
 			}
 
 			.blog-article-card {
@@ -249,53 +230,11 @@ const { ...post } = Astro.props;
 				--blog-blur-two: rgba(195, 183, 255, 0.85);
 			}
 
-			body[data-blog-style="paper"] {
-				--blog-bg: radial-gradient(circle at 88% 8%, rgba(255, 229, 168, 0.32), transparent 34%),
-					linear-gradient(165deg, #f7f2e8 0%, #efe8dc 100%);
-				--blog-text: #2d241e;
-				--blog-heading: #221c19;
-				--blog-muted: #776255;
-				--blog-panel-bg: rgba(255, 251, 244, 0.94);
-				--blog-article-bg: rgba(255, 253, 248, 0.98);
-				--blog-border: rgba(132, 104, 82, 0.24);
-				--blog-chip-bg: rgba(255, 245, 227, 0.8);
-				--blog-accent: #935b2c;
-				--blog-accent-contrast: #fffaf1;
-				--blog-panel-shadow: 0 14px 32px rgba(113, 84, 58, 0.12);
-				--blog-media-shadow: 0 14px 28px rgba(113, 84, 58, 0.16);
-				--blog-blur-one: rgba(255, 227, 165, 0.55);
-				--blog-blur-two: rgba(255, 205, 160, 0.45);
-			}
-
-			body[data-blog-style="ink"] {
-				--blog-bg: radial-gradient(circle at 10% 10%, rgba(50, 86, 147, 0.35), transparent 44%),
-					radial-gradient(circle at 88% 16%, rgba(14, 150, 123, 0.2), transparent 36%),
-					linear-gradient(145deg, #081425 0%, #0f2336 100%);
-				--blog-text: #deedff;
-				--blog-heading: #f3f9ff;
-				--blog-muted: #9fb8dd;
-				--blog-panel-bg: rgba(11, 26, 42, 0.72);
-				--blog-article-bg: rgba(11, 28, 45, 0.82);
-				--blog-border: rgba(110, 149, 214, 0.28);
-				--blog-chip-bg: rgba(38, 63, 95, 0.58);
-				--blog-accent: #67d2ff;
-				--blog-accent-contrast: #0d2232;
-				--blog-panel-shadow: 0 20px 45px rgba(2, 11, 25, 0.52);
-				--blog-media-shadow: 0 22px 44px rgba(4, 14, 34, 0.55);
-				--blog-blur-one: rgba(24, 106, 177, 0.65);
-				--blog-blur-two: rgba(18, 156, 132, 0.52);
-			}
-
 			.blog-page {
 				background: var(--blog-bg);
 			}
 
-			body[data-blog-style="paper"] .blog-page {
-				font-family: "Noto Serif SC", "Songti SC", "STSong", serif;
-			}
-
-			body[data-blog-style="aurora"] .blog-page,
-			body[data-blog-style="ink"] .blog-page {
+			body[data-blog-style="aurora"] .blog-page {
 				font-family: "IBM Plex Sans", "Segoe UI", "Helvetica Neue", sans-serif;
 			}
 
@@ -327,34 +266,6 @@ const { ...post } = Astro.props;
 				</div>
 			</div>
 		</div>
-		<script is:inline>
-			(() => {
-				const key = "aimerq-blog-style";
-				const allowed = ["aurora", "paper", "ink"];
-				const body = document.body;
-				const buttons = Array.from(document.querySelectorAll(".blog-style-btn"));
-				const applyStyle = (style) => {
-					const selected = allowed.includes(style) ? style : "aurora";
-					body.setAttribute("data-blog-style", selected);
-					buttons.forEach((button) => {
-						const active = button.dataset.blogStyle === selected;
-						button.classList.toggle("is-active", active);
-						button.setAttribute("aria-pressed", String(active));
-					});
-				};
-
-				const saved = localStorage.getItem(key);
-				applyStyle(saved || "aurora");
-
-				buttons.forEach((button) => {
-					button.addEventListener("click", () => {
-						const style = button.dataset.blogStyle || "aurora";
-						applyStyle(style);
-						localStorage.setItem(key, style);
-					});
-				});
-			})();
-		</script>
 		<Footer />
 	</body>
 </html>

@@ -52,18 +52,30 @@ const BLOG_EDIT_URL = "https://github.com/feiyiiii/aimerq-homepage/edit/main/src
                         这里放一些写给自己、也写给时间的文字。关于生活感悟，也关于读过之后仍然停留在心里的书。
                     </p>
                     <div class="mt-6">
-                        <a
-                            href={BLOG_EDIT_URL}
-                            target="_blank"
-                            rel="noreferrer"
-                            class="inline-flex items-center rounded-full border px-4 py-2 text-sm transition-all hover:-translate-y-0.5"
-                            style={{
-                                color: "var(--theme-primary)",
-                                borderColor: "var(--theme-primary)",
-                            }}
-                        >
-                            编辑此页
-                        </a>
+                        <div class="flex flex-wrap gap-3">
+                            <a
+                                href="/blogs/studio"
+                                class="inline-flex items-center rounded-full border px-4 py-2 text-sm transition-all hover:-translate-y-0.5"
+                                style={{
+                                    color: "var(--theme-primary)",
+                                    borderColor: "var(--theme-primary)",
+                                }}
+                            >
+                                文档编辑器
+                            </a>
+                            <a
+                                href={BLOG_EDIT_URL}
+                                target="_blank"
+                                rel="noreferrer"
+                                class="inline-flex items-center rounded-full border px-4 py-2 text-sm transition-all hover:-translate-y-0.5"
+                                style={{
+                                    color: "var(--theme-primary)",
+                                    borderColor: "var(--theme-primary)",
+                                }}
+                            >
+                                GitHub编辑此页
+                            </a>
+                        </div>
                     </div>
                 </section>
 

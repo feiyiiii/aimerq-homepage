@@ -1,0 +1,448 @@
+---
+import { getCollection } from "astro:content";
+import BaseHead from "../../components/BaseHead.astro";
+import Footer from "../../components/Footer.astro";
+import Header from "../../components/Header.astro";
+import { SITE_DESCRIPTION, SITE_TITLE } from "../../consts";
+
+const posts = await getCollection("blog");
+const editorPosts = posts.map((post) => ({
+    id: post.id,
+    title: post.data.title,
+    description: post.data.description || "",
+    category: post.data.category || "生活感悟",
+    readTime: post.data.read_time || 4,
+    filePath: post.filePath || `src/content/blog/${post.id}.md`,
+    body: typeof post.body === "string" ? post.body : "",
+}));
+---
+
+<!doctype html>
+<html lang="zh-CN" data-theme="light">
+    <head>
+        <BaseHead title={`${SITE_TITLE} | 文档编辑器`} description={SITE_DESCRIPTION} />
+        <style>
+            .studio-page {
+                min-height: 100vh;
+                background:
+                    radial-gradient(circle at 12% 10%, rgba(225, 242, 255, 0.7), transparent 35%),
+                    radial-gradient(circle at 88% 14%, rgba(230, 225, 255, 0.55), transparent 32%),
+                    linear-gradient(160deg, #f5f8ff, #f9fbff);
+                color: #12213e;
+                font-family: "IBM Plex Sans", "Segoe UI", "Helvetica Neue", sans-serif;
+            }
+
+            .studio-shell {
+                max-width: 1100px;
+                margin: 0 auto;
+                padding: 2rem 1rem 3rem;
+            }
+
+            .studio-top {
+                border: 1px solid rgba(89, 116, 171, 0.26);
+                background: rgba(255, 255, 255, 0.9);
+                border-radius: 24px;
+                padding: 1.2rem;
+                box-shadow: 0 18px 36px rgba(61, 97, 166, 0.13);
+                margin-bottom: 1rem;
+            }
+
+            .studio-title {
+                margin: 0;
+                font-size: clamp(1.6rem, 3.7vw, 2.35rem);
+                line-height: 1.2;
+            }
+
+            .studio-sub {
+                margin-top: 0.6rem;
+                color: #4a618b;
+                font-size: 0.95rem;
+            }
+
+            .studio-grid {
+                display: grid;
+                gap: 1rem;
+                grid-template-columns: 1fr;
+            }
+
+            .studio-card {
+                border: 1px solid rgba(89, 116, 171, 0.25);
+                background: rgba(255, 255, 255, 0.93);
+                border-radius: 24px;
+                padding: 1rem;
+                box-shadow: 0 14px 30px rgba(61, 97, 166, 0.1);
+            }
+
+            .studio-fields {
+                display: grid;
+                gap: 0.75rem;
+            }
+
+            .studio-row {
+                display: grid;
+                gap: 0.4rem;
+            }
+
+            .studio-row label {
+                font-size: 0.82rem;
+                color: #425b88;
+            }
+
+            .studio-row input,
+            .studio-row select,
+            .studio-row textarea {
+                width: 100%;
+                border: 1px solid rgba(89, 116, 171, 0.35);
+                background: rgba(255, 255, 255, 0.96);
+                border-radius: 12px;
+                padding: 0.55rem 0.7rem;
+                font-size: 0.92rem;
+                color: #12213e;
+                outline: none;
+            }
+
+            .studio-row textarea {
+                min-height: 120px;
+                resize: vertical;
+            }
+
+            .studio-row input:focus,
+            .studio-row select:focus,
+            .studio-row textarea:focus {
+                border-color: #2e60d8;
+                box-shadow: 0 0 0 3px rgba(46, 96, 216, 0.13);
+            }
+
+            .studio-actions {
+                display: flex;
+                flex-wrap: wrap;
+                gap: 0.6rem;
+                margin-top: 0.3rem;
+            }
+
+            .studio-btn {
+                border: 1px solid rgba(46, 96, 216, 0.28);
+                border-radius: 999px;
+                padding: 0.45rem 0.8rem;
+                font-size: 0.84rem;
+                background: rgba(234, 241, 255, 0.9);
+                color: #1c3f92;
+                cursor: pointer;
+                text-decoration: none;
+            }
+
+            .studio-btn.primary {
+                background: #2e60d8;
+                border-color: #2e60d8;
+                color: #ffffff;
+            }
+
+            .studio-editor {
+                min-height: 520px;
+                width: 100%;
+                border: 1px solid rgba(89, 116, 171, 0.35);
+                border-radius: 14px;
+                padding: 0.9rem;
+                font-size: 0.96rem;
+                line-height: 1.8;
+                font-family: "IBM Plex Mono", ui-monospace, Menlo, Consolas, monospace;
+                color: #0f1d36;
+                background: rgba(255, 255, 255, 0.96);
+                resize: vertical;
+                outline: none;
+            }
+
+            .studio-note {
+                margin-top: 0.55rem;
+                font-size: 0.8rem;
+                color: #5c7097;
+            }
+
+            .studio-status {
+                margin-top: 0.5rem;
+                min-height: 1.2rem;
+                font-size: 0.8rem;
+                color: #2e60d8;
+            }
+
+            @media (min-width: 980px) {
+                .studio-grid {
+                    grid-template-columns: 340px 1fr;
+                }
+            }
+        </style>
+    </head>
+    <body>
+        <Header />
+        <div class="studio-page">
+            <div class="studio-shell">
+                <section class="studio-top">
+                    <h1 class="studio-title">博客文档编辑器（版本 A）</h1>
+                    <p class="studio-sub">
+                        像写文档一样编辑内容，支持一键复制 Markdown，再点按钮进入 GitHub 保存。
+                    </p>
+                    <div class="studio-actions">
+                        <a class="studio-btn" href="/blogs">返回博客</a>
+                        <a
+                            id="github-edit-link"
+                            class="studio-btn primary"
+                            href="https://github.com/feiyiiii/aimerq-homepage/new/main/src/content/blog"
+                            target="_blank"
+                            rel="noreferrer"
+                        >
+                            打开 GitHub 编辑
+                        </a>
+                    </div>
+                </section>
+
+                <section class="studio-grid">
+                    <aside class="studio-card">
+                        <div class="studio-fields">
+                            <div class="studio-row">
+                                <label for="post-select">选择文章</label>
+                                <select id="post-select">
+                                    <option value="">新文章</option>
+                                </select>
+                            </div>
+                            <div class="studio-row">
+                                <label for="post-title">标题</label>
+                                <input id="post-title" type="text" placeholder="输入文章标题" />
+                            </div>
+                            <div class="studio-row">
+                                <label for="post-slug">Slug（文件名）</label>
+                                <input id="post-slug" type="text" placeholder="my-new-post" />
+                            </div>
+                            <div class="studio-row">
+                                <label for="post-date">发布日期</label>
+                                <input id="post-date" type="date" />
+                            </div>
+                            <div class="studio-row">
+                                <label for="post-category">分类</label>
+                                <select id="post-category">
+                                    <option value="生活感悟">生活感悟</option>
+                                    <option value="读书笔记">读书笔记</option>
+                                </select>
+                            </div>
+                            <div class="studio-row">
+                                <label for="post-read-time">阅读时长（分钟）</label>
+                                <input id="post-read-time" type="number" min="1" value="4" />
+                            </div>
+                            <div class="studio-row">
+                                <label for="post-description">摘要</label>
+                                <textarea id="post-description" placeholder="输入摘要"></textarea>
+                            </div>
+                            <div class="studio-actions">
+                                <button id="copy-markdown" class="studio-btn primary" type="button">
+                                    复制 Markdown
+                                </button>
+                                <button id="clear-draft" class="studio-btn" type="button">
+                                    清空草稿
+                                </button>
+                            </div>
+                            <div id="studio-status" class="studio-status"></div>
+                        </div>
+                    </aside>
+
+                    <section class="studio-card">
+                        <div class="studio-row">
+                            <label for="post-content">正文内容</label>
+                            <textarea
+                                id="post-content"
+                                class="studio-editor"
+                                placeholder="# 在这里开始写内容&#10;&#10;支持 Markdown 语法。"
+                            ></textarea>
+                        </div>
+                        <p class="studio-note">
+                            提示：这里像文档一样写完后，点击“复制 Markdown”，再去 GitHub 页面粘贴保存即可。
+                        </p>
+                    </section>
+                </section>
+            </div>
+        </div>
+        <script id="studio-post-data" type="application/json" set:html={JSON.stringify(editorPosts)}></script>
+        <script is:inline>
+            (() => {
+                const posts = JSON.parse(document.getElementById("studio-post-data").textContent || "[]");
+                const storageKey = "aimerq-blog-studio-draft";
+
+                const postSelect = document.getElementById("post-select");
+                const postTitle = document.getElementById("post-title");
+                const postSlug = document.getElementById("post-slug");
+                const postDate = document.getElementById("post-date");
+                const postCategory = document.getElementById("post-category");
+                const postReadTime = document.getElementById("post-read-time");
+                const postDescription = document.getElementById("post-description");
+                const postContent = document.getElementById("post-content");
+                const status = document.getElementById("studio-status");
+                const githubEditLink = document.getElementById("github-edit-link");
+                const copyMarkdown = document.getElementById("copy-markdown");
+                const clearDraft = document.getElementById("clear-draft");
+                let statusTimer = 0;
+
+                const slugify = (text) =>
+                    (text || "")
+                        .toLowerCase()
+                        .replace(/[^a-z0-9\u4e00-\u9fa5\s-]/g, "")
+                        .trim()
+                        .replace(/\s+/g, "-");
+
+                const today = new Date().toISOString().slice(0, 10);
+                const setStatus = (text) => {
+                    status.textContent = text;
+                    if (!text) {
+                        return;
+                    }
+                    window.clearTimeout(statusTimer);
+                    statusTimer = window.setTimeout(() => {
+                        status.textContent = "";
+                    }, 1800);
+                };
+
+                const getDraft = () => ({
+                    id: postSelect.value,
+                    title: postTitle.value.trim(),
+                    slug: postSlug.value.trim(),
+                    pubDate: postDate.value || today,
+                    category: postCategory.value,
+                    readTime: Number(postReadTime.value || 4),
+                    description: postDescription.value.trim(),
+                    content: postContent.value,
+                });
+
+                const setGithubLink = (draft) => {
+                    const selected = posts.find((item) => item.id === draft.id);
+                    if (selected) {
+                        githubEditLink.href = `https://github.com/feiyiiii/aimerq-homepage/edit/main/${selected.filePath}`;
+                        githubEditLink.textContent = "打开 GitHub 编辑当前文章";
+                        return;
+                    }
+                    const targetSlug = draft.slug || slugify(draft.title) || "new-post";
+                    githubEditLink.href = `https://github.com/feiyiiii/aimerq-homepage/new/main/src/content/blog`;
+                    githubEditLink.textContent = `打开 GitHub 新建文章（${targetSlug}.md）`;
+                };
+
+                const saveDraft = () => {
+                    const draft = getDraft();
+                    localStorage.setItem(storageKey, JSON.stringify(draft));
+                    setGithubLink(draft);
+                };
+
+                const buildMarkdown = (draft) => {
+                    const safeSlug = draft.slug || slugify(draft.title) || "new-post";
+                    const lines = [
+                        "---",
+                        `title: "${draft.title || "未命名文章"}"`,
+                        `pubDate: "${draft.pubDate || today}"`,
+                        `description: "${draft.description || ""}"`,
+                        `author: "AimerQ"`,
+                        `category: "${draft.category || "生活感悟"}"`,
+                        `read_time: ${Number.isFinite(draft.readTime) ? draft.readTime : 4}`,
+                        "---",
+                        "",
+                        draft.content || "",
+                        "",
+                    ];
+                    return {
+                        slug: safeSlug,
+                        markdown: lines.join("\n"),
+                    };
+                };
+
+                const loadPostToEditor = (id) => {
+                    const selected = posts.find((item) => item.id === id);
+                    if (!selected) {
+                        return;
+                    }
+                    postTitle.value = selected.title || "";
+                    postSlug.value = selected.id || "";
+                    postDate.value = today;
+                    postCategory.value = selected.category || "生活感悟";
+                    postReadTime.value = String(selected.readTime || 4);
+                    postDescription.value = selected.description || "";
+                    postContent.value = selected.body || "";
+                    saveDraft();
+                    setStatus("已载入文章内容");
+                };
+
+                posts.forEach((item) => {
+                    const option = document.createElement("option");
+                    option.value = item.id;
+                    option.textContent = item.title;
+                    postSelect.appendChild(option);
+                });
+
+                const savedRaw = localStorage.getItem(storageKey);
+                if (savedRaw) {
+                    try {
+                        const saved = JSON.parse(savedRaw);
+                        postSelect.value = saved.id || "";
+                        postTitle.value = saved.title || "";
+                        postSlug.value = saved.slug || "";
+                        postDate.value = saved.pubDate || today;
+                        postCategory.value = saved.category || "生活感悟";
+                        postReadTime.value = String(saved.readTime || 4);
+                        postDescription.value = saved.description || "";
+                        postContent.value = saved.content || "";
+                    } catch {
+                        postDate.value = today;
+                    }
+                } else {
+                    postDate.value = today;
+                }
+
+                if (!postTitle.value && posts.length > 0) {
+                    postSelect.value = posts[0].id;
+                    loadPostToEditor(posts[0].id);
+                } else {
+                    saveDraft();
+                }
+
+                postSelect.addEventListener("change", () => {
+                    if (postSelect.value) {
+                        loadPostToEditor(postSelect.value);
+                        return;
+                    }
+                    postTitle.value = "";
+                    postSlug.value = "";
+                    postCategory.value = "生活感悟";
+                    postReadTime.value = "4";
+                    postDescription.value = "";
+                    postContent.value = "";
+                    saveDraft();
+                    setStatus("已切换到新文章草稿");
+                });
+
+                [postTitle, postSlug, postDate, postCategory, postReadTime, postDescription, postContent].forEach((el) => {
+                    el.addEventListener("input", saveDraft);
+                });
+
+                copyMarkdown.addEventListener("click", async () => {
+                    const draft = getDraft();
+                    const { slug, markdown } = buildMarkdown(draft);
+                    try {
+                        await navigator.clipboard.writeText(markdown);
+                        setStatus(`已复制 ${slug}.md 内容`);
+                    } catch {
+                        postContent.focus();
+                        setStatus("复制失败，请手动复制正文");
+                    }
+                });
+
+                clearDraft.addEventListener("click", () => {
+                    localStorage.removeItem(storageKey);
+                    postSelect.value = "";
+                    postTitle.value = "";
+                    postSlug.value = "";
+                    postDate.value = today;
+                    postCategory.value = "生活感悟";
+                    postReadTime.value = "4";
+                    postDescription.value = "";
+                    postContent.value = "";
+                    saveDraft();
+                    setStatus("草稿已清空");
+                });
+            })();
+        </script>
+        <Footer />
+    </body>
+</html>
