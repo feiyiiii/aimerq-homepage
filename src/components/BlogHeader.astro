@@ -21,18 +21,7 @@ const editPostUrl = `https://github.com/feiyiiii/aimerq-homepage/edit/main/${sou
 <header class="blog-header-card">
     <div class="blog-header-body">
         <nav class="blog-toolbar">
-            <div class="blog-toolbar-group">
-                <a class="blog-toolbar-link" href="/blogs">← 返回归档</a>
-                <a class="blog-toolbar-link" href="/blogs/studio">文档编辑器</a>
-            </div>
-            <a
-                class="blog-toolbar-link blog-toolbar-link-primary"
-                href={editPostUrl}
-                target="_blank"
-                rel="noreferrer"
-            >
-                GitHub编辑此文
-            </a>
+            <a class="blog-toolbar-link" href="/blogs">← 返回归档</a>
         </nav>
 
         <h1 class="blog-title">{entry.data.title}</h1>
@@ -57,8 +46,18 @@ const editPostUrl = `https://github.com/feiyiiii/aimerq-homepage/edit/main/${sou
             <span class="blog-meta-item">{entry.data.read_time || 4} min read</span>
         </div>
 
-        <div class="blog-style-lock">
-            已启用视觉版本 A（Aurora）
+        <div class="blog-action-row">
+            <a class="blog-toolbar-link blog-toolbar-link-primary" href="/blogs/studio">
+                文档编辑器
+            </a>
+            <a
+                class="blog-toolbar-link blog-toolbar-link-ghost"
+                href={editPostUrl}
+                target="_blank"
+                rel="noreferrer"
+            >
+                GitHub 编辑此文
+            </a>
         </div>
     </div>
 </header>

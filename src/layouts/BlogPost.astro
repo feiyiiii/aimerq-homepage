@@ -69,15 +69,15 @@ const { ...post } = Astro.props;
 			}
 
 			.blog-header-body {
-				padding: 1.75rem 1.25rem;
+				padding: 1.35rem 1.15rem 1.45rem;
 			}
 
 			.blog-toolbar {
 				display: flex;
 				flex-wrap: wrap;
-				gap: 0.65rem;
-				justify-content: space-between;
-				margin-bottom: 1.25rem;
+				gap: 0.5rem;
+				justify-content: flex-start;
+				margin-bottom: 0.9rem;
 			}
 
 			.blog-toolbar-group {
@@ -89,15 +89,16 @@ const { ...post } = Astro.props;
 			.blog-toolbar-link {
 				display: inline-flex;
 				align-items: center;
-				padding: 0.4rem 0.8rem;
+				padding: 0.42rem 0.82rem;
 				border-radius: 999px;
 				border: 1px solid var(--blog-border);
 				color: var(--blog-muted);
-				font-size: 0.85rem;
+				font-size: 0.8rem;
 				font-weight: 600;
-				letter-spacing: 0.01em;
+				letter-spacing: 0;
 				text-decoration: none;
-				transition: transform 200ms ease, background 200ms ease, border-color 200ms ease;
+				background: rgba(255, 255, 255, 0.45);
+				transition: transform 180ms ease, background 180ms ease, border-color 180ms ease;
 			}
 
 			.blog-toolbar-link:hover {
@@ -111,12 +112,16 @@ const { ...post } = Astro.props;
 				background: color-mix(in srgb, var(--blog-accent) 16%, transparent);
 			}
 
+			.blog-toolbar-link-ghost {
+				background: rgba(255, 255, 255, 0.75);
+			}
+
 			.blog-title {
-				font-size: clamp(2rem, 5vw, 3.25rem);
-				line-height: 1.18;
-				font-weight: 700;
+				font-size: clamp(2rem, 4.2vw, 2.7rem);
+				line-height: 1.25;
+				font-weight: 680;
 				color: var(--blog-text);
-				margin: 0 0 1.25rem;
+				margin: 0 0 0.95rem;
 				letter-spacing: -0.01em;
 			}
 
@@ -137,28 +142,24 @@ const { ...post } = Astro.props;
 				display: inline-flex;
 				align-items: center;
 				gap: 0.5rem;
-				padding: 0.45rem 0.75rem;
+				padding: 0.42rem 0.72rem;
 				border-radius: 999px;
 				background: var(--blog-chip-bg);
 				border: 1px solid var(--blog-border);
 				color: var(--blog-muted);
-				font-size: 0.86rem;
-				margin-bottom: 1rem;
+				font-size: 0.84rem;
+				margin-bottom: 0.9rem;
 			}
 
 			.blog-meta-dot {
 				opacity: 0.5;
 			}
 
-			.blog-style-lock {
-				display: inline-flex;
+			.blog-action-row {
+				display: flex;
+				flex-wrap: wrap;
 				align-items: center;
-				padding: 0.35rem 0.7rem;
-				border: 1px solid var(--blog-border);
-				border-radius: 999px;
-				background: var(--blog-chip-bg);
-				color: var(--blog-muted);
-				font-size: 0.78rem;
+				gap: 0.6rem;
 			}
 
 			.blog-article-card {
